@@ -1,0 +1,14 @@
+- name: "Install Httpd"
+  yum:
+    name: httpd
+    state: present
+  when: ansible_distribution == "CentOS"
+- name: "Copy Index file"
+  copy:
+    src: index.html
+    dest: /var/www/html/
+  when: ansible_distribution == "CentOS"
+  notify:
+    - restart_httpd
+
+
